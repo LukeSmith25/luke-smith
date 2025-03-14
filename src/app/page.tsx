@@ -126,7 +126,7 @@ export default function Page() {
                     adoption.
                   </li>
                   <li>
-                    Engaged with the developer community to drive adoption of Marginfi's DeFi solutions, contributing to
+                    Engaged with the developer community to drive adoption of Marginfi&apos;s DeFi solutions, contributing to
                     $50M in platform cashflows.
                   </li>
                   <li>
