@@ -48,6 +48,16 @@ export default function ContactForm() {
           {pending ? "Sending..." : "Send Message"}
         </Button>
         {message && <p className="text-sm text-center mt-4 text-muted-foreground">{message}</p>}
+        <p className="text-xs text-muted-foreground text-center mt-4">
+          You can also reach me directly at{" "}
+          <a href="mailto:luke_smith10@baylor.edu" className="underline">
+            luke_smith10@baylor.edu
+          </a>{" "}
+          or call{" "}
+          <a href="tel:5124091690" className="underline">
+            512-409-1690
+          </a>
+        </p>
       </form>
     </Card>
   )

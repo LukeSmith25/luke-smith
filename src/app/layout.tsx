@@ -3,12 +3,14 @@ import { cn } from "@/lib/utils"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
+import type React from "react" // Import React
 
 const inter = Inter({ subsets: ["latin"] })
 
+// Update the metadata in the layout file
 export const metadata: Metadata = {
-  title: "John.dev - Full Stack Developer",
-  description: "Full stack developer portfolio showcasing projects and skills",
+  title: "Luke Smith - Software Engineer",
+  description: "Software Engineer specializing in full-stack development and blockchain technologies",
 }
 
 export default function RootLayout({
@@ -26,3 +28,4 @@ export default function RootLayout({
     </html>
   )
 }
+
