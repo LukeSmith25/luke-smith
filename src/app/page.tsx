@@ -174,7 +174,7 @@ export default function Page() {
                     accurate on-chain data collection.
                   </li>
                   <li>
-                    Managed agile development, driving timely project delivery to support Solana users' tax reporting
+                    Managed agile development, driving timely project delivery to support Solana users&apos; tax reporting
                     needs.
                   </li>
                 </ul>
