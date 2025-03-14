@@ -159,7 +159,7 @@ export default function Page() {
                     adoption.
                   </li>
                   <li>
-                    Engaged with the developer community to drive adoption of Marginfi's DeFi solutions, contributing to
+                    Engaged with the developer community to drive adoption of Marginfi&apos;s DeFi solutions, contributing to
                     $50M in platform cashflows.
                   </li>
                   <li>
@@ -207,7 +207,7 @@ export default function Page() {
                     accurate on-chain data collection.
                   </li>
                   <li>
-                    Managed agile development, driving timely project delivery to support Solana users' tax reporting
+                    Managed agile development, driving timely project delivery to support Solana users&apos; tax reporting
                     needs.
                   </li>
                 </ul>
