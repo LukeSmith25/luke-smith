@@ -77,25 +77,25 @@ export default function Page() {
                 </div>
               </div>
               <div className="flex space-x-4">
-                <Link href="https://github.com/lukesmith25" target="_blank">
+                <Link href="https://github.com/LukeSmith25" target="_blank">
                   <Button variant="outline" size="icon">
                     <Github className="h-4 w-4" />
                     <span className="sr-only">GitHub</span>
                   </Button>
                 </Link>
-                <Link href="https://linkedin.com/in/luke-smith" target="_blank">
+                <Link href="https://www.linkedin.com/in/lukesmith2025/" target="_blank">
                   <Button variant="outline" size="icon">
                     <Linkedin className="h-4 w-4" />
                     <span className="sr-only">LinkedIn</span>
                   </Button>
                 </Link>
-                <Link href="https://twitter.com/lukesmith" target="_blank">
+                <Link href="https://x.com/LukeSmith_X" target="_blank">
                   <Button variant="outline" size="icon">
                     <Twitter className="h-4 w-4" />
                     <span className="sr-only">Twitter</span>
                   </Button>
                 </Link>
-                <Link href="mailto:luke_smith10@baylor.edu">
+                <Link href="mailto:jlukesmith0221@gmail.com">
                   <Button variant="outline" size="icon">
                     <Mail className="h-4 w-4" />
                     <span className="sr-only">Email</span>
@@ -266,8 +266,8 @@ export default function Page() {
             >
               Portfolio
             </Link>
-            <Link className="text-xs hover:underline underline-offset-4" href="mailto:luke_smith10@baylor.edu">
-              luke_smith10@baylor.edu
+            <Link className="text-xs hover:underline underline-offset-4" href="mailto:jlukesmith0221@gmail.com">
+              jlukesmith0221@gmail.com
             </Link>
           </nav>
         </div>
