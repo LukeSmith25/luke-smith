@@ -1,9 +1,30 @@
 import { Button } from "@/components/ui/button"
-import { Github, Linkedin, Mail, MapPin } from "lucide-react"
+import { Github, Linkedin, Mail, MapPin, Twitter } from "lucide-react"
 import Link from "next/link"
 import ContactForm from "./components/contact-form"
+import ImageCarousel from "./components/image-carousel"
+import ProfileImage from "./components/profile-image"
 import ProjectCard from "./components/project-card"
 import TechStack from "./components/tech-stack"
+
+// Placeholder images for the carousel with unique IDs
+const carouselImages = [
+  {
+    src: "/placeholder.svg",
+    alt: "Placeholder 1",
+    id: "image-1",
+  },
+  {
+    src: "/placeholder.svg",
+    alt: "Placeholder 2",
+    id: "image-2",
+  },
+  {
+    src: "/placeholder.svg",
+    alt: "Placeholder 3",
+    id: "image-3",
+  },
+]
 
 export default function Page() {
   return (
@@ -12,7 +33,7 @@ export default function Page() {
         <div className="container flex h-14 items-center">
           <div className="mr-4 hidden md:flex">
             <Link className="mr-6 flex items-center space-x-2" href="/">
-              <span className="hidden font-bold sm:inline-block">Luke Smith</span>
+              <span className="font-bold">Luke Smith</span>
             </Link>
             <nav className="flex items-center space-x-6 text-sm font-medium">
               <Link href="#about" className="transition-colors hover:text-foreground/80">
@@ -41,19 +62,21 @@ export default function Page() {
         <section id="about" className="py-12 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
+              <ProfileImage src="/placeholder.svg" alt="Luke Smith" className="mb-6" />
               <div className="space-y-2">
                 <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
-                  Luke Smith
+                  Software Engineer & Blockchain Developer
                 </h1>
                 <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-                  Software Engineer specializing in full-stack development and blockchain technologies.
+                  Full-stack developer specializing in blockchain technology and DeFi solutions. Currently a student at
+                  Baylor University.
                 </p>
                 <div className="flex items-center justify-center gap-2 text-muted-foreground mt-2">
                   <MapPin className="h-4 w-4" />
                   <span>Waco, TX</span>
                 </div>
               </div>
-              <div className="space-x-4">
+              <div className="flex space-x-4">
                 <Link href="https://github.com/lukesmith25" target="_blank">
                   <Button variant="outline" size="icon">
                     <Github className="h-4 w-4" />
@@ -66,6 +89,12 @@ export default function Page() {
                     <span className="sr-only">LinkedIn</span>
                   </Button>
                 </Link>
+                <Link href="https://twitter.com/lukesmith" target="_blank">
+                  <Button variant="outline" size="icon">
+                    <Twitter className="h-4 w-4" />
+                    <span className="sr-only">Twitter</span>
+                  </Button>
+                </Link>
                 <Link href="mailto:luke_smith10@baylor.edu">
                   <Button variant="outline" size="icon">
                     <Mail className="h-4 w-4" />
@@ -75,6 +104,10 @@ export default function Page() {
               </div>
             </div>
           </div>
+        </section>
+
+        <section className="py-12">
+          <ImageCarousel images={carouselImages} />
         </section>
 
         <section id="projects" className="py-12 md:py-24 lg:py-32">
@@ -126,7 +159,7 @@ export default function Page() {
                     adoption.
                   </li>
                   <li>
-                    Engaged with the developer community to drive adoption of Marginfi&apos;s DeFi solutions, contributing to
+                    Engaged with the developer community to drive adoption of Marginfi's DeFi solutions, contributing to
                     $50M in platform cashflows.
                   </li>
                   <li>
@@ -174,7 +207,7 @@ export default function Page() {
                     accurate on-chain data collection.
                   </li>
                   <li>
-                    Managed agile development, driving timely project delivery to support Solana users&apos; tax reporting
+                    Managed agile development, driving timely project delivery to support Solana users' tax reporting
                     needs.
                   </li>
                 </ul>
