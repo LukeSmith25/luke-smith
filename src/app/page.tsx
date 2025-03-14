@@ -2,13 +2,13 @@ import { Button } from "@/components/ui/button"
 import { Github, Linkedin, Mail, MapPin, Twitter } from "lucide-react"
 import Link from "next/link"
 import ContactForm from "./components/contact-form"
-import ImageCarousel from "./components/image-carousel"
+// import ImageCarousel from "./components/image-carousel"
 import ProfileImage from "./components/profile-image"
 import ProjectCard from "./components/project-card"
 import TechStack from "./components/tech-stack"
 
 // Placeholder images for the carousel with unique IDs
-const carouselImages = [
+/* const carouselImages = [
   {
     src: "/placeholder.svg",
     alt: "Placeholder 1",
@@ -24,7 +24,7 @@ const carouselImages = [
     alt: "Placeholder 3",
     id: "image-3",
   },
-]
+] */
 
 export default function Page() {
   return (
@@ -106,9 +106,9 @@ export default function Page() {
           </div>
         </section>
 
-        <section className="py-12">
+        {/* <section className="py-12">
           <ImageCarousel images={carouselImages} />
-        </section>
+        </section> */}
 
         <section id="projects" className="py-12 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">
