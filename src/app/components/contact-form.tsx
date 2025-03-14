@@ -16,7 +16,7 @@ export default function ContactForm() {
     try {
       const response = await submitContactForm(formData)
       setMessage(response.message)
-    } catch (error) {
+    } catch {
       setMessage("Something went wrong. Please try again.")
     } finally {
       setPending(false)
@@ -25,24 +25,24 @@ export default function ContactForm() {
 
   return (
     <Card className="p-6">
-      <form key="contact-form" action={handleSubmit} className="space-y-4">
+      <form key="contact-form" action={handleSubmit} className="space-y-4" suppressHydrationWarning>
         <div>
           <label htmlFor="name" className="block text-sm font-medium mb-2">
             Name
           </label>
-          <Input id="name" name="name" required />
+          <Input id="name" name="name" required suppressHydrationWarning />
         </div>
         <div>
           <label htmlFor="email" className="block text-sm font-medium mb-2">
             Email
           </label>
-          <Input id="email" name="email" type="email" required />
+          <Input id="email" name="email" type="email" required suppressHydrationWarning />
         </div>
         <div>
           <label htmlFor="message" className="block text-sm font-medium mb-2">
             Message
           </label>
-          <Textarea id="message" name="message" required />
+          <Textarea id="message" name="message" required suppressHydrationWarning />
         </div>
         <Button type="submit" className="w-full" disabled={pending}>
           {pending ? "Sending..." : "Send Message"}
