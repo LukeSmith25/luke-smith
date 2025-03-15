@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { useState } from "react"
 
-interface Video {
+export interface Video {
   id: string
   title: string
   description: string
@@ -42,9 +42,9 @@ export default function YouTubeChannelSection({ channels }: YouTubeChannelSectio
     return Math.max(1, Math.ceil(filteredCount / videosPerPage))
   }
 
-  const getPaginatedVideos = (videos: Video[]) => {
+  const getPaginatedVideos = (channelId: string, videos: Video[]) => {
     const filteredVideos = getFilteredVideos(videos)
-    const currentPage = currentPages[videos[0]?.channelName] || 1
+    const currentPage = currentPages[channelId] || 1
     const startIndex = (currentPage - 1) * videosPerPage
     return filteredVideos.slice(startIndex, startIndex + videosPerPage)
   }
@@ -84,7 +84,7 @@ export default function YouTubeChannelSection({ channels }: YouTubeChannelSectio
           return (
             <TabsContent key={channel.id} value={channel.id} className="mt-0">
               <div className="grid gap-6 md:grid-cols-3">
-                {getPaginatedVideos(channel.videos).map((video) => (
+                {getPaginatedVideos(channel.id, channel.videos).map((video) => (
                   <YouTubeVideoCard
                     key={video.id}
                     title={video.title}

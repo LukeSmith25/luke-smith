@@ -1,7 +1,6 @@
 "use server"
 
-import type { YouTubeVideo } from "@/lib/youtube"
-import type { PodcastEpisode } from "@/lib/spotify"
+import type { Video } from "@/app/components/youtube-channel-section"
 
 interface YouTubeSnippet {
   title: string;
@@ -51,7 +50,7 @@ export async function submitContactForm(formData: FormData) {
   }
 }
 
-export async function fetchYouTubeContent() {
+export async function fetchYouTubeContent(): Promise<Video[]> {
   const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY
   const PLAYLIST_ID = process.env.YOUTUBE_PLAYLIST_ID
 
@@ -96,7 +95,7 @@ export async function fetchYouTubeContent() {
   }
 }
 
-export async function fetchSpotifyContent() {
+export async function fetchSpotifyContent(): Promise<Video[]> {
   const SPOTIFY_CLIENT_ID = process.env.SPOTIFY_CLIENT_ID
   const SPOTIFY_CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET
   const SHOW_ID = process.env.SPOTIFY_SHOW_ID // Your Vlyss podcast show ID
