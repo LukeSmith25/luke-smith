@@ -6,27 +6,30 @@ import ContactForm from "./components/contact-form"
 import ProfileImage from "./components/profile-image"
 import ProjectCard from "./components/project-card"
 import TechStack from "./components/tech-stack"
+import ContentSection from "./components/content-section"
+import { fetchYouTubeContent, fetchSpotifyContent } from "./actions"
+import YouTubeChannelSection from "./components/youtube-channel-section"
 
-// Placeholder images for the carousel with unique IDs
-/* const carouselImages = [
-  {
-    src: "/placeholder.svg",
-    alt: "Placeholder 1",
-    id: "image-1",
-  },
-  {
-    src: "/placeholder.svg",
-    alt: "Placeholder 2",
-    id: "image-2",
-  },
-  {
-    src: "/placeholder.svg",
-    alt: "Placeholder 3",
-    id: "image-3",
-  },
-] */
+export default async function Page() {
+  // Fetch content data
+  const [youtubeVideos, spotifyEpisodes] = await Promise.all([
+    fetchYouTubeContent(),
+    fetchSpotifyContent()
+  ])
 
-export default function Page() {
+  const channels = [
+    {
+      id: "marginfi",
+      name: "Marginfi Founders Series",
+      videos: youtubeVideos
+    },
+    {
+      id: "vlyss",
+      name: "Vlyss Podcast",
+      videos: spotifyEpisodes
+    }
+  ]
+
   return (
     <div className="min-h-screen bg-background">
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -41,6 +44,9 @@ export default function Page() {
               </Link>
               <Link href="#projects" className="transition-colors hover:text-foreground/80">
                 Projects
+              </Link>
+              <Link href="#content" className="transition-colors hover:text-foreground/80">
+                Content
               </Link>
               <Link href="#experience" className="transition-colors hover:text-foreground/80">
                 Experience
@@ -139,6 +145,15 @@ export default function Page() {
           </div>
         </section>
 
+        <section id="content" className="py-12 md:py-24 lg:py-32">
+          <div className="container px-4 md:px-6">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-12 text-center">
+              Content & Media
+            </h2>
+            <YouTubeChannelSection channels={channels} />
+          </div>
+        </section>
+
         <section id="experience" className="py-12 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-12 text-center">
@@ -159,8 +174,8 @@ export default function Page() {
                     adoption.
                   </li>
                   <li>
-                    Engaged with the developer community to drive adoption of Marginfi&apos;s DeFi solutions, contributing to
-                    $50M in platform cashflows.
+                    Engaged with the developer community to drive adoption of Marginfi&apos;s DeFi solutions,
+                    contributing to $50M in platform cashflows.
                   </li>
                   <li>
                     Launched a developer podcast series featuring Solana founders, increasing platform awareness by 20%.
@@ -207,8 +222,8 @@ export default function Page() {
                     accurate on-chain data collection.
                   </li>
                   <li>
-                    Managed agile development, driving timely project delivery to support Solana users&apos; tax reporting
-                    needs.
+                    Managed agile development, driving timely project delivery to support Solana users&apos; tax
+                    reporting needs.
                   </li>
                 </ul>
               </div>
