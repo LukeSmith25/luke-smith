@@ -6,7 +6,6 @@ import ContactForm from "./components/contact-form"
 import ProfileImage from "./components/profile-image"
 import ProjectCard from "./components/project-card"
 import TechStack from "./components/tech-stack"
-import ContentSection from "./components/content-section"
 import { fetchYouTubeContent, fetchSpotifyContent } from "./actions"
 import YouTubeChannelSection from "./components/youtube-channel-section"
 

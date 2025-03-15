@@ -1,10 +1,10 @@
 "use client"
 
+import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { ExternalLink, Play } from "lucide-react"
+import { PlayCircle } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
 
 interface YouTubeVideoCardProps {
   title: string
@@ -35,7 +35,7 @@ export default function YouTubeVideoCard({
           />
           <Link href={videoUrl} target="_blank" className="absolute inset-0 flex items-center justify-center">
             <Button size="icon" className="w-12 h-12 rounded-full bg-black/50 hover:bg-black/70">
-              <Play className="h-6 w-6" />
+              <PlayCircle className="h-6 w-6" />
             </Button>
           </Link>
         </div>

@@ -3,6 +3,38 @@
 import { getYouTubePlaylistVideos, type YouTubeVideo } from "@/lib/youtube"
 import { getSpotifyShowEpisodes, type PodcastEpisode } from "@/lib/spotify"
 
+interface YouTubeSnippet {
+  title: string;
+  description: string;
+  thumbnails: {
+    maxres?: { url: string };
+    standard?: { url: string };
+    high?: { url: string };
+    medium?: { url: string };
+    default?: { url: string };
+  };
+  resourceId: {
+    videoId: string;
+  };
+  publishedAt: string;
+}
+
+interface YouTubeItem {
+  id: string;
+  snippet: YouTubeSnippet;
+}
+
+interface SpotifyEpisode {
+  id: string;
+  name: string;
+  description: string;
+  images: Array<{ url: string }>;
+  external_urls: {
+    spotify: string;
+  };
+  release_date: string;
+}
+
 export async function submitContactForm(formData: FormData) {
   // Simulate a delay
   await new Promise((resolve) => setTimeout(resolve, 1000))
@@ -40,8 +72,8 @@ export async function fetchYouTubeContent() {
 
     // Filter out private videos and map the rest
     return data.items
-      .filter((item: any) => item.snippet.title !== "Private video")
-      .map((item: any) => {
+      .filter((item: YouTubeItem) => item.snippet.title !== "Private video")
+      .map((item: YouTubeItem) => {
         // Get the best available thumbnail
         const thumbnails = item.snippet.thumbnails || {}
         const thumbnail = thumbnails.maxres || thumbnails.standard || thumbnails.high || thumbnails.medium || thumbnails.default || {
@@ -113,7 +145,7 @@ export async function fetchSpotifyContent() {
       console.log('Sample Spotify Episode:', JSON.stringify(data.items[0], null, 2))
     }
 
-    return data.items.map((item: any) => ({
+    return data.items.map((item: SpotifyEpisode) => ({
       id: item.id,
       title: item.name,
       description: item.description,
