@@ -1,7 +1,7 @@
 "use server"
 
-import { getYouTubePlaylistVideos, type YouTubeVideo } from "@/lib/youtube"
-import { getSpotifyShowEpisodes, type PodcastEpisode } from "@/lib/spotify"
+import type { YouTubeVideo } from "@/lib/youtube"
+import type { PodcastEpisode } from "@/lib/spotify"
 
 interface YouTubeSnippet {
   title: string;
@@ -158,68 +158,5 @@ export async function fetchSpotifyContent() {
     console.error("Error fetching Spotify episodes:", error)
     return []
   }
-}
-
-// Fallback data in case API calls fail
-function getFallbackYouTubeVideos(): YouTubeVideo[] {
-  return [
-    {
-      id: "video-1",
-      title: "Marginfi Co-Founders Series: Solana Founder Interview",
-      description:
-        "In-depth conversation with a leading Solana founder about building on the blockchain and the future of DeFi.",
-      thumbnailUrl: "/placeholder.svg?height=400&width=600",
-      videoUrl: "https://www.youtube.com/playlist?list=PLYZNmKNwFgfwEtJBL9hfeF0GuRBlzRueK",
-      channelName: "Marginfi",
-      date: "Mar 15, 2024",
-    },
-    {
-      id: "video-2",
-      title: "Building DeFi Solutions on Marginfi",
-      description: "Technical deep dive into building decentralized finance applications on the Marginfi platform.",
-      thumbnailUrl: "/placeholder.svg?height=400&width=600",
-      videoUrl: "https://www.youtube.com/playlist?list=PLYZNmKNwFgfwEtJBL9hfeF0GuRBlzRueK",
-      channelName: "Marginfi",
-      date: "Feb 28, 2024",
-    },
-    {
-      id: "video-3",
-      title: "The Future of Solana Ecosystem",
-      description: "Panel discussion with Solana founders about the ecosystem's growth and future opportunities.",
-      thumbnailUrl: "/placeholder.svg?height=400&width=600",
-      videoUrl: "https://www.youtube.com/playlist?list=PLYZNmKNwFgfwEtJBL9hfeF0GuRBlzRueK",
-      channelName: "Marginfi",
-      date: "Jan 12, 2024",
-    },
-  ]
-}
-
-function getFallbackPodcastEpisodes(): PodcastEpisode[] {
-  return [
-    {
-      id: "episode-1",
-      title: "Personal Growth in Tech Careers",
-      description: "Luke and Nathan discuss strategies for personal development and growth in technology careers.",
-      thumbnailUrl: "/placeholder.svg?height=400&width=400",
-      episodeUrl: "https://open.spotify.com/show/7HpUglZhk3AlgBeWTOZCND",
-      date: "Apr 5, 2024",
-    },
-    {
-      id: "episode-2",
-      title: "Overcoming Challenges in Blockchain Development",
-      description: "A deep dive into common challenges faced by blockchain developers and strategies to overcome them.",
-      thumbnailUrl: "/placeholder.svg?height=400&width=400",
-      episodeUrl: "https://open.spotify.com/show/7HpUglZhk3AlgBeWTOZCND",
-      date: "Mar 22, 2024",
-    },
-    {
-      id: "episode-3",
-      title: "Career Growth in Web3",
-      description: "Exploring career paths and growth opportunities in the Web3 and blockchain space.",
-      thumbnailUrl: "/placeholder.svg?height=400&width=400",
-      episodeUrl: "https://open.spotify.com/show/7HpUglZhk3AlgBeWTOZCND",
-      date: "Feb 10, 2024",
-    },
-  ]
 }
 
