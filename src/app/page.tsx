@@ -56,7 +56,7 @@ export default async function Page() {
             </nav>
           </div>
           <Button variant="outline" className="ml-auto" asChild>
-            <Link href="/resume.pdf" target="_blank">
+            <Link href="/resume/luke-smith-resume.pdf" download>
               Resume
             </Link>
           </Button>
