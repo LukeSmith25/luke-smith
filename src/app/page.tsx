@@ -1,33 +1,26 @@
 import { Button } from "@/components/ui/button"
-import { Github, Linkedin, Mail, MapPin, Twitter } from "lucide-react"
+import { Github, Linkedin, Mail, MapPin, Twitter, FileText } from "lucide-react"
 import Link from "next/link"
 import ContactForm from "./components/contact-form"
 // import ImageCarousel from "./components/image-carousel"
 import ProfileImage from "./components/profile-image"
 import ProjectCard from "./components/project-card"
 import TechStack from "./components/tech-stack"
+import ContentSection from "./components/content-section"
+import SchedulingSection from "./components/scheduling-section"
 import { fetchYouTubeContent, fetchSpotifyContent } from "./actions"
-import YouTubeChannelSection from "./components/youtube-channel-section"
+import CalendlyIntegration from "./components/calendly-integration"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export default async function Page() {
-  // Fetch content data
-  const [youtubeVideos, spotifyEpisodes] = await Promise.all([
-    fetchYouTubeContent(),
-    fetchSpotifyContent()
-  ])
+  // Fetch content data from APIs
+  const youtubeVideos = await fetchYouTubeContent()
+  const podcastEpisodes = await fetchSpotifyContent()
 
-  const channels = [
-    {
-      id: "marginfi",
-      name: "Marginfi Founders Series",
-      videos: youtubeVideos
-    },
-    {
-      id: "vlyss",
-      name: "Vlyss Podcast",
-      videos: spotifyEpisodes
-    }
-  ]
+  // Get Calendly URL from environment variables with a fallback
+  const calendlyUrl = process.env.CALENDLY_URL || "https://calendly.com/jlukesmith0221/30min"
+  
+  console.log("Using Calendly URL:", calendlyUrl); // Debug the URL
 
   return (
     <div className="min-h-screen bg-background">
@@ -50,16 +43,31 @@ export default async function Page() {
               <Link href="#experience" className="transition-colors hover:text-foreground/80">
                 Experience
               </Link>
+              <Link href="#schedule" className="transition-colors hover:text-foreground/80">
+                Schedule
+              </Link>
               <Link href="#contact" className="transition-colors hover:text-foreground/80">
                 Contact
               </Link>
             </nav>
           </div>
-          <Button variant="outline" className="ml-auto" asChild>
-            <Link href="/resume/luke-smith-resume.pdf" download>
-              Resume
-            </Link>
-          </Button>
+          <div className="ml-auto flex items-center gap-2">
+            <div className="hidden md:block">
+              <CalendlyIntegration 
+                url={calendlyUrl} 
+                buttonText="Schedule a Call" 
+                prefill={{}}
+                size="sm"
+              />
+            </div>
+            <Button variant="outline" size="sm" className="" asChild>
+              <Link href="/resume/luke-smith-resume.pdf" target="_blank" className="flex items-center">
+                <FileText className="mr-2 h-4 w-4" />
+                Resume
+              </Link>
+            </Button>
+            <ThemeToggle />
+          </div>
         </div>
       </header>
 
@@ -149,7 +157,7 @@ export default async function Page() {
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-12 text-center">
               Content & Media
             </h2>
-            <YouTubeChannelSection channels={channels} />
+            <ContentSection youtubeVideos={youtubeVideos} podcastEpisodes={podcastEpisodes} />
           </div>
         </section>
 
@@ -258,6 +266,24 @@ export default async function Page() {
           </div>
         </section>
 
+        {/* New scheduling section */}
+        <section id="schedule" className="py-12 md:py-24 lg:py-32">
+          <div className="container px-4 md:px-6">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-12 text-center">
+              Schedule a Meeting
+            </h2>
+            <div className="max-w-3xl mx-auto">
+              <SchedulingSection
+                calendlyUrl={calendlyUrl}
+                title="Let's Discuss Your Project"
+                description="Book a time to talk about your blockchain project, software development needs, or career opportunities."
+                inline={true}
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Contact section remains the same */}
         <section id="contact" className="py-12 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">
             <div className="mx-auto max-w-2xl">

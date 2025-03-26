@@ -1,6 +1,7 @@
 "use server"
 
 import type { Video } from "@/app/components/youtube-channel-section"
+import type { PodcastEpisode } from "@/lib/spotify"
 
 interface YouTubeSnippet {
   title: string;
@@ -95,7 +96,7 @@ export async function fetchYouTubeContent(): Promise<Video[]> {
   }
 }
 
-export async function fetchSpotifyContent(): Promise<Video[]> {
+export async function fetchSpotifyContent(): Promise<PodcastEpisode[]> {
   const SPOTIFY_CLIENT_ID = process.env.SPOTIFY_CLIENT_ID
   const SPOTIFY_CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET
   const SHOW_ID = process.env.SPOTIFY_SHOW_ID // Your Vlyss podcast show ID
@@ -136,20 +137,13 @@ export async function fetchSpotifyContent(): Promise<Video[]> {
       throw new Error(`Spotify API error: ${data.error?.message || response.status}`)
     }
 
-    // Log the full response data
-    console.log('Spotify API Response:', JSON.stringify(data, null, 2))
-    
-    // Log the first item as an example
-    if (data.items?.[0]) {
-      console.log('Sample Spotify Episode:', JSON.stringify(data.items[0], null, 2))
-    }
-
+    // Map Spotify API response to PodcastEpisode format
     return data.items.map((item: SpotifyEpisode) => ({
       id: item.id,
       title: item.name,
       description: item.description,
-      thumbnailUrl: item.images[0].url,
-      videoUrl: item.external_urls.spotify,
+      thumbnailUrl: item.images[0]?.url || "/placeholder.svg",
+      episodeUrl: item.external_urls.spotify, // This is guaranteed to be a string
       channelName: "Vlyss",
       date: new Date(item.release_date).toLocaleDateString()
     }))
